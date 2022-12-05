@@ -28,9 +28,4 @@
       }
     }
   }
-  "DataBaseSetting": {
-    "CnxString": "mongodb://localhost:27018",
-    "DataBase": "ProductDB",
-    "Collection": "Products"
-  }
 }
