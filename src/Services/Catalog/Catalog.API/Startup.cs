@@ -1,5 +1,6 @@
 using Catalog.API.Data;
 using Catalog.API.Data.Interface;
+using Catalog.API.Entities;
 using Catalog.API.Repositories;
 using Catalog.API.Repositories.Interface;
 using Microsoft.AspNetCore.Builder;
@@ -57,6 +58,8 @@ namespace Catalog.API
             {
                 endpoints.MapControllers();
             });
+            CatalogContextSeed.SeedData(Products);
+
         }
     }
 }
