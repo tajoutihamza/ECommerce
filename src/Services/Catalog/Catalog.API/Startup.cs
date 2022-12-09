@@ -58,7 +58,7 @@ namespace Catalog.API
             {
                 endpoints.MapControllers();
             });
-            CatalogContextSeed.SeedData(Products);
+            CatalogContextSeed.PrepPopulation(app);
 
         }
     }
