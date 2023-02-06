@@ -1,3 +1,5 @@
+using Basket.API.Repositories;
+using Basket.API.Repositories.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -30,6 +32,11 @@ namespace Basket.API
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Basket.API", Version = "v1" });
+            });
+            services.AddScoped<IBasketRepository, BasketRepository>();
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = Configuration.GetValue<string>("CacheSetting:ConnectionString");
             });
         }
 
