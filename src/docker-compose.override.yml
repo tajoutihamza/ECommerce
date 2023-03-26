@@ -17,3 +17,20 @@ services:
       - DataBaseSetting:CnxString=mongodb://catalogDB:27017
     ports:
       - 8000:80
+
+  basketDB: 
+    container_name: basketDB
+    restart: always
+    ports:
+    - 6379:6379 
+
+  basket.api:
+    container_name: basket.api
+    depends_on: 
+    - basketDB
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - CacheSetting.ConnectionString=basketDB:6379
+    ports:
+      - 8001:80
+
