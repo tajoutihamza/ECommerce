@@ -74,7 +74,7 @@ namespace Catalog.API.Controllers
         public async Task<ActionResult<Product>> CreateProduct([FromBody] Product product)
         {
             await _repository.CreateProduct(product);
-            return CreatedAtRoute(nameof(GetProductById), new { id = product.Id }, product);
+            return CreatedAtAction(nameof(GetProductById), new { id = product.Id }, product);
         }
         [HttpDelete("{id:length(24)}", Name = "DeleteProduct")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Product))]
