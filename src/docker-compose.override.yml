@@ -3,7 +3,7 @@ version: '3.4'
 services:
   catalogDB:
     container_name: catalogDB
-    restart: always
+    restart: unless-stopped
     ports:
     - 27017:27017 
     volumes:
@@ -15,15 +15,15 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - DataBaseSetting:CnxString=mongodb://catalogDB:27017
+    restart: unless-stopped
     ports:
       - 8000:80
 
   basketDB: 
     container_name: basketDB
-    restart: always
+    restart: unless-stopped
     ports:
     - 6379:6379 
-
   basket.api:
     container_name: basket.api
     depends_on: 
@@ -31,6 +31,42 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - CacheSetting.ConnectionString=basketDB:6379
+    restart: unless-stopped
     ports:
       - 8001:80
+
+  DiscountDB:
+    container_name: DiscountDB
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: DiscountDb
+    ports:
+    - 5432:5432
+    volumes:
+    - postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    restart: unless-stopped
+    ports:
+    - 5050:80
+    volumes:
+    -  pgadmin_data:/root/.pgadmin
+
+
+  portainer:
+    container_name: portainer
+    restart: unless-stopped
+    ports:
+    - 8080:8000
+    - 9000:9000 #HTTP
+    #- 9443:9443 #HTTPS
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock 
+    - portainer_data:/data 
 
