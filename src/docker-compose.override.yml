@@ -46,6 +46,16 @@ services:
     - 5432:5432
     volumes:
     - postgres_data:/var/lib/postgresql/data
+  discount.api:
+    container_name: discount.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:Discount=Server=DiscountDB;Port=5432;Database=DiscountDb;User ID=admin;Password=admin123"
+    restart: unless-stopped
+    depends_on: 
+    - DiscountDB
+    ports:
+      - 8002:80
 
   pgadmin:
     container_name: pgadmin
@@ -69,4 +79,5 @@ services:
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock 
     - portainer_data:/data 
+
 
