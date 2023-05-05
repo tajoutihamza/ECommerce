@@ -58,6 +58,7 @@ namespace Discount.API
             {
                 endpoints.MapControllers();
             });
+            DbPreparation.DbInit(app);
         }
     }
 }
