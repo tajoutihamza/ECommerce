@@ -41,25 +41,25 @@ namespace Discount.Grpc.Data
             {
                 new Coupon() {
                     id=1,
-                    productname="IPhone X",
+                    productName="IPhone X",
                     description="IPhone X discount",
                     amount=250
                 },
                 new Coupon() {
                     id=2,
-                    productname="Samsung 10",
+                    productName="Samsung 10",
                     description="Samsung 10 discount",
                     amount=200
                 },
                 new Coupon() {
                     id=3,
-                    productname="Huawei Plus",
+                    productName="Huawei Plus",
                     description="Huawei Plus discount",
                     amount=350
                 },
                 new Coupon() {
                     id=4,
-                    productname="LG G7 ThinQ",
+                    productName="LG G7 ThinQ",
                     description="LG G7 ThinQ discount",
                     amount=120
                 },

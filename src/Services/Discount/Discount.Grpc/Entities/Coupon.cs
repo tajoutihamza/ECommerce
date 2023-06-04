@@ -7,7 +7,7 @@ namespace Discount.Grpc.Entities
         [Required]
         public int id { get; set; }
         [Required]
-        public string productname { get; set; }
+        public string productName { get; set; }
         public string description { get; set; }
         [Required]
         public int amount { get; set; }

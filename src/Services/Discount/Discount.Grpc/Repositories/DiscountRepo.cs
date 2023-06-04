@@ -22,7 +22,7 @@ namespace Discount.Grpc.Repositories
 
         public async Task<bool> DeleteCoupon(string ProductName)
         {
-            var coupon = await _context.coupon.FirstOrDefaultAsync<Coupon>(t => t.productname.Equals(ProductName));
+            var coupon = await _context.coupon.FirstOrDefaultAsync<Coupon>(t => t.productName.Equals(ProductName));
             _context.coupon.Remove(coupon);
             _context.SaveChanges();
             return _context.SaveChanges() == 0;
@@ -30,7 +30,7 @@ namespace Discount.Grpc.Repositories
 
         public async Task<Coupon> GetCoupon(string ProductName)
         {
-            return await _context.coupon.FirstOrDefaultAsync<Coupon>(t => t.productname.Equals(ProductName));
+            return await _context.coupon.FirstOrDefaultAsync<Coupon>(t => t.productName.Equals(ProductName));
         }
 
         public async Task<bool> UpdateCoupon(Coupon coupon)

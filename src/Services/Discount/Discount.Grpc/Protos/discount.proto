@@ -6,7 +6,7 @@ service DiscountGrpc{
 	rpc GetDiscount(GetDiscountRequest) returns (CouponModel);
 	rpc CreateDiscount(DiscountModel) returns (CouponModel);
 	rpc UpdateDiscount(DiscountModel) returns (CouponModel);
-	rpc DeleteDiscount(DiscountModel) returns (CouponModel);
+	rpc DeleteDiscount(DeleteDiscountRequest) returns (DeleteDiscountResponse);
 }
 
 message GetDiscountRequest{
@@ -22,4 +22,11 @@ message CouponModel{
 
 message DiscountModel{
 	CouponModel coupon = 1;
+}
+message DeleteDiscountRequest {
+  string productName = 1;
+}
+
+message DeleteDiscountResponse {
+  bool success = 1;
 }
