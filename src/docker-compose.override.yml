@@ -31,6 +31,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
       - CacheSetting.ConnectionString=basketDB:6379
+      - GrpcSettings.DiscountUrl=http://discount.grpc
     restart: unless-stopped
     ports:
       - 8001:80
@@ -56,6 +57,16 @@ services:
     - DiscountDB
     ports:
       - 8002:80
+  discount.gprc:
+    container_name: discount.grpc
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - "ConnectionStrings:Discount=Server=DiscountDB;Port=5432;Database=DiscountDb;User ID=admin;Password=admin123"
+    restart: unless-stopped
+    depends_on: 
+    - DiscountDB
+    ports:
+      - 8003:80
 
   pgadmin:
     container_name: pgadmin

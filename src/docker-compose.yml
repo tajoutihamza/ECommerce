@@ -27,6 +27,11 @@ services:
     build:
       context: .
       dockerfile: Services/Discount/Discount.API/Dockerfile
+  discount.gprc:
+    image: ${DOCKER_REGISTRY-}discountgrpc
+    build:
+      context: .
+      dockerfile: Services/Discount/Discount.Grpc/Dockerfile
 
   pgadmin:
     image: dpage/pgadmin4
