@@ -27,3 +27,15 @@ stages:
         dockerfile: '$(Build.SourcesDirectory)/src/Services/Catalog/Catalog.API/Dockerfile'
         tags: |
           $(tag)
+- task: DockerCompose@0
+  inputs:
+    containerregistrytype: 'Container Registry'
+    dockerComposeFile: '**/docker-compose.yml'
+    additionalDockerComposeFiles: '**/docker-compose.override.yml'
+    dockerComposeFileArgs: |
+      POSTGRES_USER="admin"
+      POSTGRES_PASSWORD="admin123"
+      PGADMIN_DEFAULT_EMAIL="admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD="admin123"
+      ASPNETCORE_ENVIRONMENT="Development"
+    action: 'Run services'
